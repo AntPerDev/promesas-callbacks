@@ -11,18 +11,19 @@ import './styles.css';
 
 const heroeId1 = 'capi';
 const heroeId2 = 'iron';
-const heroeId2 = 'spider';
+const heroeId3 = 'spider';
 
-buscarHeroe( heroeId1, (err, heroe )=>{
+buscarHeroe( heroeId1, (err, heroe1 )=>{
 
   if( err ){ return console.error( err ); }
   
   buscarHeroe(heroeId2, (err,heroe2)=>{
     if (err) { return console.error(err); }
 
-    buscarHeroe(heroeId3, (err, heroe2) => {
+    buscarHeroe(heroeId3, (err, heroe3) => {
       if (err) { return console.error(err); }
-      console.log(`Enviando a ${heroeId1.nombre}, ${heroeId2.nombre} y ${heroeId3.nombre}`);
+      
+      console.log(`Enviando a ${heroe1.nombre}, ${heroe2.nombre} y ${heroe3.nombre}`);
 
     })
 
