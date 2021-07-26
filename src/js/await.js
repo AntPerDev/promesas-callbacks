@@ -1,24 +1,27 @@
-import {buscarHeroeAsync} from './promesas'
+import { buscarHeroe, buscarHeroeAsync } from './promesas'
 
 const heroesIds = ['capi', 'iron', 'spider'];
 
-export const obtenerHeroesArr = async() => {
-  
-  const heroesArr = [];
+// export const obtenerHeroesArr = async () => {
+// 2º
+//  return await Promise.all(heroesIds.map(buscarHeroe));
 
-  for (const id of heroesIds) {
-    // buscarHeroeAsync(id).then( heroe => heroesArr.push( heroe ));
-     const heroe =  await buscarHeroeAsync(id);
-    heroesArr.push(heroe) ;
-  }
+  //1º
+  // const heroesArr = [];
+  // for (const id of heroesIds) {
+  //   heroesArr.push(buscarHeroe(id));
+  // }
+  // return await Promise.all(heroesArr);
+  //usar await fuera de los ciclos for
+// }
 
-  // setTimeout(() => {
-  //   console.log('Obtener heroe');
-  //   console.table( heroesArr );
-    
-  // }, 1000);
+//3º Esta linea equivale a todas las anteriores y más rapida y eficiente. Pero de lectura compleja
+// export const obtenerHeroesArr = async () => await Promise.all(heroesIds.map(buscarHeroe));
 
-  return heroesArr;
+//4º Esta seria la forma idonea y más fácil de leer
+export const obtenerHeroesArr = async () =>{
+  return await Promise.all(heroesIds.map(buscarHeroe));
+} 
 
-}
+
 
