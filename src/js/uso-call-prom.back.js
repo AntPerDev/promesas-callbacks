@@ -14,7 +14,6 @@ const heroeId1 = 'capi';
 const heroeId2 = 'iron';
 const heroeId3 = 'spider';
 
-//callbackhell
 // buscarHeroe( heroeId1, (err, heroe1 )=>{
 //   if( err ){ return console.error( err ); }
 //   buscarHeroe(heroeId2, (err,heroe2)=>{
@@ -39,7 +38,6 @@ const heroeId3 = 'spider';
 //Se puede resumir así:
 // Promise.all([true,'hola',123]).then( arr => {
 //   console.log('Promise.all', arr );
-
 // });
 Promise.all([buscarHeroe(heroeId1), buscarHeroe(heroeId2)])
   .then(([heroe1, heroe2]) => {
@@ -47,9 +45,8 @@ Promise.all([buscarHeroe(heroeId1), buscarHeroe(heroeId2)])
   }).catch( err => {
     alert(err);
   }).finally(()=>{
-    //Se ejecuta cuando todo se terminó
+    //Se ejecuta cuando todo se terminó todo, sean las promesas resueltas o rechazadas
     console.log('Se terminó el promise.all');
-    
   });
 
 //El código dentro de la promesa sólo se dispara si todas las promesas son devueltas, se reseuelven de manera exitosa
