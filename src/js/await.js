@@ -1,6 +1,17 @@
 import { buscarHeroe, buscarHeroeAsync } from './promesas'
 
 const heroesIds = ['capi', 'iron', 'spider'];
+// const heroesPromesas = heroesIds.map( id => buscarHeroe( id ));
+//La linea de arriba es exactamente igual que la de abajo
+const heroesPromesas = heroesIds.map( buscarHeroe);
+//y la de abajo es más fácil de leer
+
+
+
+
+
+
+
 
 // export const obtenerHeroesArr = async () => {
 // 2º
@@ -32,5 +43,38 @@ export const obtenerHeroeAwait = async( id )=> {
     console.log('CATCH!!!');
     return {nombre: 'Sin nombre',
             poder: 'Sin poder'};
+  }
+}
+
+
+export const heroesCiclo = async() => {
+  console.time('HeroesCiclo');
+
+  // const heroes = await Promise.all(heroesPromesas)
+  // heroes.forEach( heroe => console.log(heroe));
+  // Estas dos lineas se pueden poner en una sola linea
+  // Usando el await en otra forma
+
+  for await(const heroe of heroesPromesas){
+    console.log(heroe);
+    
+  }
+
+  // Otra forma seria usando el forech pero es menos eficiente
+  //ya que separa la ejecucion del hilo principal y el programa 
+  // acaba antes de recibir las promesas.
+  // heroesPromesas.forEach(async(p)=>console.log(await p));
+  
+  console.timeEnd('HeroesCiclo');
+}
+;
+export const heroeIfAwait = async(id) => {
+
+  if ( (await buscarHeroeAsync(id)).nombre === 'Ironman'){
+    console.log('Es el mejor de todos');
+    
+  }else {
+    console.log('naaaa');
+    
   }
 }
